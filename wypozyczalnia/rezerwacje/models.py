@@ -11,7 +11,6 @@ class Samochod(models.Model):
     cena_wynajmu = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     rodzaj_paliwa = models.CharField(max_length=20, null=True, blank=True)
     pojemnosc_silnika = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-
     def __str__(self):
         return f'{self.marka} {self.model}'
 
@@ -36,5 +35,3 @@ class Rezerwacja(models.Model):
             cena_wynajmu = self.samochod.cena_wynajmu
             self.cena_rezerwacji = cena_wynajmu * delta.days
         super().save(*args, **kwargs)
-        self.samochod.dostepny = False
-        self.samochod.save()
